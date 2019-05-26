@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Jquery Demo | DOM Manipulation</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h3>JQUERY | DOM MANIPULATION</h3>
+    </header>
+    <div class="container">
+      <div>
+        <div class="row pt-3">
+          <div class="col">
+            <input id="userInput1" type="text" />
+          </div>
+          <div class="col">
+            <button id="prependBtn" class="btn btn-primary">Preprend</button>
+          </div>
+          <div class="col">
+            <button id="appendBtn" class="btn btn-primary">Append</button>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <ul id="list-1">
+            <li>List Item</li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <div class="row pt-3">
+          <div class="col">
+            <input id="userInput2" type="text" />
+          </div>
+        </div>
+        <div class="row pt-3">
+          <ul id="list-2">
+            <li>List Item</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="jquery.js"></script>
+  <script>
+    function clearInput(element) {
+      $(element).val("");
+    }
+
+    $(document).ready(function() {
+      // Prepend Button
+      $("#prependBtn").click(() => {
+        let userInput = $("#userInput1").val();
+        $("#list-1").prepend("<li>" + userInput + "</li>");
+        clearInput("#userInput1");
+      });
+
+      // Append Button
+      $("#appendBtn").click(() => {
+        let userInput = $("#userInput1").val();
+        $("#list-1").append("<li>" + userInput + "</li>");
+        clearInput("#userInput1");
+      });
+
+      // User Input 2 using enter to append
+      $("#userInput2").keyup(e => {
+        if (e.code === "Enter" && e.target.value != "") {
+          //   e.preventDefault();
+          $("#list-2").append("<li>" + e.target.value + "</li>");
+          clearInput("#userInput2");
+        }
+      });
+    });
+  </script>
+</html>

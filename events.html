@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Jquery Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row pt-3"><h3>Hello!</h3></div>
+      <div>
+        <div class="row pt-3">
+          <div class="col">
+            <button id="button-1" class="btn btn-primary">Button 1</button>
+          </div>
+          <div class="col">
+            <button id="button-2" class="btn btn-primary">Button 2</button>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col">
+            <ol id="list-1">
+              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+              <li>Aliquam tincidunt mauris eu risus.</li>
+              <li>Vestibulum auctor dapibus neque.</li>
+            </ol>
+          </div>
+          <div class="col">
+            <ol id="list-2">
+              <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+              <li>Aliquam tincidunt mauris eu risus.</li>
+              <li>Vestibulum auctor dapibus neque.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div>
+        <hr />
+        <div class="row pt-3">
+          <div class="col">
+            <input id="input-box-1" type="text" />
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col-sm">
+                <input id="num1" type="number" />
+              </div>
+              <div class="col-sm">
+                <input id="num2" type="number" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col pt-3">
+                <button id="button-4" class="btn btn-primary">Add</button>
+              </div>
+              <div class="col pt-3">
+                <button id="button-5" class="btn btn-primary">Subtract</button>
+              </div>
+              <div class="col pt-3">
+                <button id="button-6" class="btn btn-primary">Multiply</button>
+              </div>
+              <div class="col pt-3">
+                <button id="button-7" class="btn btn-primary">Divide</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col">
+            <ol id="list-3">
+              <li id="list-3-1">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+              </li>
+              <li id="list-3-2">Aliquam tincidunt mauris eu risus.</li>
+              <li id="list-3-3">Vestibulum auctor dapibus neque.</li>
+            </ol>
+          </div>
+          <div class="col">
+            <p id="result-text">Result:</p>
+            <input type="text" id="result" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#list-2").hide();
+      $("#list-3").hide();
+      $("#result").hide();
+      $("#button-1").on("click", function() {
+        alert("Button 1 Clicked!");
+      });
+      $("#button-2").on("click", () => {
+        $("#list-2").toggle();
+      });
+      $("#button-1").hover(() => {
+        $("#list-1").toggle();
+      });
+      $("#input-box-1").keyup(() => {
+        $("#list-3").show();
+        // $("#list-3 > li:hidden:first").show();
+      });
+      $("#button-4").on("click", () => {
+        let num1 = parseInt($("#num1").val());
+        let num2 = parseInt($("#num2").val());
+        let result = num1 + num2;
+        $("#result")
+          .val(result.toString())
+          .show();
+      });
+      $("#button-5").on("click", () => {
+        let num1 = parseInt($("#num1").val());
+        let num2 = parseInt($("#num2").val());
+        let result = num1 - num2;
+        $("#result")
+          .val(result.toString())
+          .show();
+      });
+      $("#button-6").on("click", () => {
+        let num1 = parseInt($("#num1").val());
+        let num2 = parseInt($("#num2").val());
+        let result = num1 * num2;
+        $("#result")
+          .val(result.toString())
+          .show();
+      });
+      $("#button-7").on("click", () => {
+        let num1 = parseInt($("#num1").val());
+        let num2 = parseInt($("#num2").val());
+        let result = num1 / num2;
+        $("#result")
+          .val(result.toString())
+          .show();
+      });
+    });
+  </script>
+</html>

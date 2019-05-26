@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Jquery Demo | AJAX</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row pt-3"><h3>Ajax Demo</h3></div>
+      <hr />
+      <div class="row pt-3">
+        <div id="result1" class="col"></div>
+      </div>
+      <hr />
+      <div class="row pt-3">
+        <ul id="result2"></ul>
+      </div>
+      <hr />
+      <div class="row pt-3">
+        <form id="form" action="https://jsonplaceholder.typicode.com/posts">
+          <div class="row">
+            <input type="text" placeholder="Title" id="title" />
+          </div>
+          <div class="row pt-2">
+            <textarea
+              placeholder="Body"
+              name=""
+              id="body"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </div>
+          <div class="row pt-3">
+            <input type="submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="../jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.get("test.html", data => {
+        $("#result1").html(data);
+      });
+
+      /* one method to fetch data as json object
+      $.getJSON("https://jsonplaceholder.typicode.com/users", data => {
+        // console.log(data);
+        $.each(data, (index, value) => {
+          $("#result2").append("<li>" + value.name + "</li>");
+        });
+      });
+      */
+
+      // using ajax
+      $.ajax({
+        method: "GET",
+        url: "https://jsonplaceholder.typicode.com/users",
+        dataType: "json"
+      }).done(data => {
+        // console.log(data);
+        $.map(data, (user, index) => {
+          $("#result2").append(
+            "<li>" + (index + 1) + " " + user.name + "</li>"
+          );
+        });
+      });
+
+      $("#form").submit(e => {
+        e.preventDefault();
+        let title = $("#title").val();
+        let body = $("#body").val();
+        let url = $("#form").attr("action");
+
+        $.post(url, { title: title, body: body }).done(data => {
+          console.log(data);
+        });
+      });
+    });
+  </script>
+</html>
